@@ -1,1 +1,3 @@
-# CS433_Assignment_1
+# CS 433 Computer Networks
+## Assignment 1
+## Network Application using Socket Programming:
