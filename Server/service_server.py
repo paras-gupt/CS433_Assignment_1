@@ -24,25 +24,27 @@ def exec_service_server(mode, requested_service):
             response = "NOK"
 
     elif(cmd.split(' ')[0] == "DWD"): 
-        f = open(cmd.split(' ')[1], 'r')
-        response = f.read(2048)
+        try:
+            f = open(cmd.split(' ')[1], 'r')
+            response = "OK "+ f.read(2048)
+            print(response)
+            f.close()
+        except:
+            response = "NOK"
 
     elif(cmd.split(' ')[0] == "UPD"): 
-        return cmd.split(' ')[1]
+        try:
+            f = open('uploaded_file.txt', 'w')
+            f.write(cmd.split(' ', 1)[1])
+            f.close()
+            response = "OK"
+        except:
+            response = "NOK"
 
     else: 
         response = "Service not available"
 
     return encrypt(mode, response)
-
-# def response_type(mode, requested_service):
-#     cmd = decrypt(mode, requested_service)
-#     if(cmd.split(' ')[0] == 'DWD'):
-#         return 'dwd'
-#     elif(cmd.split(' ')[0] == 'UPD'):
-#         return 'upd'
-#     else:
-#         return 'one'
 
 def supported_commands():
     return ''' The following commands are supported:
