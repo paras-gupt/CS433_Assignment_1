@@ -8,10 +8,13 @@ def init_service_client():
     service = input('Enter service: ')
 
     if(service.split(' ')[0] == "UPD"):
-        f = open(service.split(' ')[1], 'r')
-        service = "UPD " + f.read(2048)
-        # print(service)
-        f.close()
+        try:
+            f = open(service.split(' ', 1)[1], 'r')
+            service = "UPD " + f.read(2048)
+            # print(service)
+            f.close()
+        except:
+            service = "UPD"
 
     # Encrypt the requested service and send it to server
     encrypted_service = encrypt(mode, service)

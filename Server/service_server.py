@@ -16,7 +16,7 @@ def exec_service_server(mode, requested_service):
         response = str
 
     elif(cmd.split(' ')[0] == "CD"): 
-        dir = cmd.split(' ')[1]
+        dir = cmd.split(' ', 1)[1]
         try:
             os.chdir(dir)
             response = "OK"
@@ -25,7 +25,7 @@ def exec_service_server(mode, requested_service):
 
     elif(cmd.split(' ')[0] == "DWD"): 
         try:
-            f = open(cmd.split(' ')[1], 'r')
+            f = open(cmd.split(' ', 1)[1], 'r')
             response = "OK "+ f.read(2048)
             print(response)
             f.close()
@@ -35,9 +35,12 @@ def exec_service_server(mode, requested_service):
     elif(cmd.split(' ')[0] == "UPD"): 
         try:
             f = open('uploaded_file.txt', 'w')
-            f.write(cmd.split(' ', 1)[1])
-            f.close()
-            response = "OK"
+            if(len(cmd.split(' ')) == 1):
+                response = "NOK"
+            else:
+                f.write(cmd.split(' ', 1)[1])
+                f.close()
+                response = "OK"
         except:
             response = "NOK"
 
