@@ -8,8 +8,8 @@ host = socket.gethostname()
 port = 5000            
 client_socket.connect((host, port))
 
-# Supported Commands received from server
-print("Server says: \n", client_socket.recv(1024).decode())
+# Supported Commands list
+print(supported_commands())
 
 # File Service Layer, Crypto Layer
 mode, encrypted_service = init_service_client()

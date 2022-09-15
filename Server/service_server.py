@@ -46,13 +46,4 @@ def exec_service_server(mode, requested_service):
 
     return encrypt(mode, response)
 
-def supported_commands():
-    return ''' The following commands are supported:
-    1. CWD - Retrieve the path of the current working directory for the user
-    2. LS - List the files/folders present in the current working directory
-    3. CD <dir> - Change the directory to <dir> as specified by the client
-    4. DWD <file> - Download the <file> specified by the user on server to client
-    5. UPD <file> - Upload the <file> on client to the remote server in CWD
-    '''
-
 

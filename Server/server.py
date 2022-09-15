@@ -20,9 +20,6 @@ while True:
     conn, addr = server_socket.accept()
     print('Connection established with client having address: ', addr)
 
-    # Server sends list of available services
-    conn.send(supported_commands().encode())
-
     # Networking Layer
     mode = conn.recv(1024).decode()
     requested_service = conn.recv(1024).decode()
