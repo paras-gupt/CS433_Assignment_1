@@ -65,8 +65,11 @@ def encryption_mode():
             3 - Transpose
         ''')
     mode = input('Enter encryption mode: ')
-    return mode
 
+    while(not (int(mode) == 1 or int(mode) == 2 or int(mode) == 3)):
+        mode = input('\nInvalid Encryption Mode. Enter encryption mode again: ')
+
+    return mode
 
 # Decryption methods
 
