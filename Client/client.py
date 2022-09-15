@@ -18,41 +18,11 @@ mode, encrypted_service = init_service_client()
 client_socket.send(mode.encode())
 client_socket.send(encrypted_service.encode())
 
-# if (response_type(mode, encrypted_service) == 'one'):
-    # Networking Layer
+# Networking Layer
 response = client_socket.recv(1024).decode()
 # File Service Layer, Crypto Layer
-service_response(mode, response)
+service_response(mode, encrypted_service, response)
 
-# elif (response_type(mode, encrypted_service) == 'dwd'):
-#     client_socket.settimeout(5)
-#     f = open('received_file.txt', 'w')
-#     while True:
-#         try:
-#             data = client_socket.recv(1024)
-#         except:
-#             print("File downloaded on client")
-#             break
-
-#         response_data = decrypt(mode, data.decode())
-
-#         f.write(response_data)
-
-#     f.close()
-
-# elif (response_type(mode, encrypted_service).split(' ')[0] == 'UPD'):
-#     upload_file = response_type(mode, encrypted_service).split(' ')[1]
-#     print(upload_file)
-
-#     # Networking Layer
-#     f = open(upload_file, 'r')
-#     l = f.read(1024)
-#     print(l)
-#     while (l):
-#         client_socket.send(encrypt(mode, l).encode())
-#         l = f.read(1024)
-#     f.close()
-#     print('File uploaded to client')
 
 client_socket.close()
 print('Connection Closed')
