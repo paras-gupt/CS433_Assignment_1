@@ -8,29 +8,19 @@ def substitute(data):
     lowercase_aplhabets = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
     uppercase_aplhabets = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
     str = ""
-    sentences = data.split('\n')
-    for k in range(len(sentences)):
-        words = sentences[k].split()
-        for i in range(len(words)):
-            word = words[i]
-            for letter in word:
-                if letter in numbers:
-                    idx = numbers.index(letter)        
-                    str = str + numbers[(idx + offset)%10]
-                elif letter in lowercase_aplhabets:
-                    idx = lowercase_aplhabets.index(letter)        
-                    str = str + lowercase_aplhabets[(idx + offset)%26]
-                elif letter in uppercase_aplhabets:
-                    idx = uppercase_aplhabets.index(letter)        
-                    str = str + uppercase_aplhabets[(idx + offset)%26]
-                else:
-                    str = str + letter
 
-            if (i != len(words)-1):
-                str = str + ' '
-
-        if(k != len(sentences)-1):
-            str = str + '\n'
+    for letter in data:
+        if letter in numbers:
+            idx = numbers.index(letter)        
+            str = str + numbers[(idx + offset)%10]
+        elif letter in lowercase_aplhabets:
+            idx = lowercase_aplhabets.index(letter)        
+            str = str + lowercase_aplhabets[(idx + offset)%26]
+        elif letter in uppercase_aplhabets:
+            idx = uppercase_aplhabets.index(letter)        
+            str = str + uppercase_aplhabets[(idx + offset)%26]
+        else:
+            str = str + letter
 
     return str
 
@@ -81,29 +71,18 @@ def de_substitute(data):
     lowercase_aplhabets = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
     uppercase_aplhabets = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
     str = ""
-    sentences = data.split('\n')
-    for k in range(len(sentences)):
-        words = sentences[k].split()
-        for i in range(len(words)):
-            word = words[i]
-            for letter in word:
-                if letter in numbers:
-                    idx = numbers.index(letter)        
-                    str = str + numbers[(idx - offset)%10]
-                elif letter in lowercase_aplhabets:
-                    idx = lowercase_aplhabets.index(letter)        
-                    str = str + lowercase_aplhabets[(idx - offset)%26]
-                elif letter in uppercase_aplhabets:
-                    idx = uppercase_aplhabets.index(letter)        
-                    str = str + uppercase_aplhabets[(idx - offset)%26]
-                else:
-                    str = str + letter
-
-            if (i != len(words)-1):
-                str = str + ' '
-
-        if(k != len(sentences)-1):
-            str = str + '\n'
+    for letter in data:
+        if letter in numbers:
+            idx = numbers.index(letter)        
+            str = str + numbers[(idx - offset)%10]
+        elif letter in lowercase_aplhabets:
+            idx = lowercase_aplhabets.index(letter)        
+            str = str + lowercase_aplhabets[(idx - offset)%26]
+        elif letter in uppercase_aplhabets:
+            idx = uppercase_aplhabets.index(letter)        
+            str = str + uppercase_aplhabets[(idx - offset)%26]
+        else:
+            str = str + letter
 
     return str
 
