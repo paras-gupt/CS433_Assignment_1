@@ -18,9 +18,15 @@ def init_service_client():
 
     # Encrypt the requested service and send it to server
     encrypted_service = encrypt(mode, service)
-    return mode, encrypted_service
 
-def service_response(mode, encrypted_service, response):
+    # Adding mode header to the command
+    encrypted_service = mode + " " + encrypted_service
+
+    return encrypted_service
+
+def service_response(encrypted_service, response):
+    mode = encrypted_service.split(' ', 1)[0]
+    encrypted_service = encrypted_service.split(' ', 1)[1]
     response = decrypt(mode, response)
     service = decrypt(mode, encrypted_service)
     if(service.split(' ')[0] == "DWD"):
@@ -30,14 +36,17 @@ def service_response(mode, encrypted_service, response):
             response = response.split(' ', 1)[0]
             f.write(data)
             f.close()
-            print("Response from server: ", response)
+            print("Response from server: ", response , "\nFile downloaded succesfully into downloaded_file.txt")
         except:
-            print("Response from server: NOK")
+            print("Response from server: Status:NOK")
+    elif(service.split(' ')[0] == "UPD"):
+        print("Response from server: ", response , "\nFile uploaded succesfully to server")
     else:
         print("Response from server: ", response)
 
 def supported_commands():
-    return ''' The following commands are supported:
+    return ''' 
+The following services can be requested from the server:
     1. CWD - Retrieve the path of the current working directory for the user
     2. LS - List the files/folders present in the current working directory
     3. CD <dir> - Change the directory to <dir> as specified by the client

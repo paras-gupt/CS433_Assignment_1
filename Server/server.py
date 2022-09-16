@@ -21,11 +21,10 @@ while True:
     print('Connection established with client having address: ', addr)
 
     # Networking Layer
-    mode = conn.recv(1024).decode()
     requested_service = conn.recv(1024).decode()
 
     # Crypto Layer and File Service Layer
-    response = exec_service_server(mode, requested_service)
+    response = exec_service_server(requested_service)
 
     # Networking Layer
     conn.send(response.encode())
